@@ -74,7 +74,12 @@ public class FrontController extends HttpServlet {
 			} else if (p[1].equals("weather")) {
 
 				WeatherController wc = new WeatherController();
-				action = wc.start(request);
+				try {
+					action = wc.start(request);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			if (action.isFlag()) {
 

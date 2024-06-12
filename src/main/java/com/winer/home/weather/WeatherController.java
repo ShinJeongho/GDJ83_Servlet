@@ -14,7 +14,7 @@ public class WeatherController {
 		ws = new WeatherService();
 	}
 
-	public Action start(HttpServletRequest request) {
+	public Action start(HttpServletRequest request) throws Exception {
 		String uri = request.getRequestURI();
 		uri = uri.substring(uri.lastIndexOf("/") + 1); // 마지막/이후의 1번부터 문자열 추출
 
