@@ -75,8 +75,8 @@ public class WeatherDAO {
 		List<WeatherDTO> weatherList = this.getWeathers(); // 파일에서 기존날씨목록 가져와서 DTO형태변환
 		weatherDTO.setNum(weatherList.size() + 1);// DTO객체에 넘버부여
 
-		String data = weatherDTO.getCity() + "-" + weatherDTO.getGion() + "-" + weatherDTO.getStatus() + "-"
-				+ weatherDTO.getHuminity();
+		String data = weatherDTO.getNum() + "," + weatherDTO.getCity() + "-" + weatherDTO.getGion() + "-"
+				+ weatherDTO.getStatus() + "-" + weatherDTO.getHuminity();
 
 		fw.write(data);
 		fw.close();
