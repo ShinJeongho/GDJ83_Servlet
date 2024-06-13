@@ -13,6 +13,7 @@ public class WeatherDAO {
 	// 여기선 데이터를 꺼내오거나 집어넣거나
 	// service는 전처리나 후처리용
 
+	// 파일에서 전체를꺼내오는
 	public List<WeatherDTO> getWeathers() throws Exception {
 		List<WeatherDTO> weatherlist = new ArrayList<WeatherDTO>();
 
@@ -44,4 +45,23 @@ public class WeatherDAO {
 		return weatherlist;
 
 	}
+
+	// detail
+
+	public WeatherDTO getDetail(WeatherDTO weatherDTO) throws Exception {
+		List<WeatherDTO> ar = this.getWeathers(); // 번호가 일치하는애 찾기
+
+		WeatherDTO result = null;
+
+		for (WeatherDTO weather : ar) {
+			if (weather.getNum() == weatherDTO.getNum()) {
+				result = weather;
+
+				break;
+
+			}
+		}
+		return result;
+	}
+
 }

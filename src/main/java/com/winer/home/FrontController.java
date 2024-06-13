@@ -69,7 +69,12 @@ public class FrontController extends HttpServlet {
 			} else if (p[1].equals("student")) {
 
 				StudentController sc = new StudentController();
-				action = sc.start(request);
+				try {
+					action = sc.start(request);
+				} catch (Exception e) {
+
+					e.printStackTrace();
+				}
 
 			} else if (p[1].equals("weather")) {
 

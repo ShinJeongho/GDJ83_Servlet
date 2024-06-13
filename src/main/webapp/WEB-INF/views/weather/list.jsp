@@ -23,7 +23,7 @@
 		<c:forEach items="${requestScope.list}" var="w">
 			<tr>
 			<td>${pageScope.w.num}</td>
-			<td><a href="./detail">${pageScope.w.city}</a></td>
+			<td><a href="./detail?num=${pageScope.w.num}">${pageScope.w.city}</a></td>
 			<td>${pageScope.w.gion}</td>		
 			</tr>		
 		</c:forEach>

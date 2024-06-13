@@ -1,31 +1,32 @@
 package com.winer.home.student;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class StudentService {
+	private StudentDAO studentDAO;
 
-	public List<Student> getStudents() {
-		ArrayList<Student> ar = new ArrayList<Student>();
-		Random random = new Random();
-		for (int i = 0; i < 5; i++) {
-			Student student = new Student();
-
-			student.setNum(i + 1);
-			student.setName("name" + i);
-			student.setAvg(random.nextInt(100) + random.nextDouble());
-
-			ar.add(student);
-		}
-		return ar;
+	public StudentService() {
+		studentDAO = new StudentDAO();
 	}
 
-	public Student makeStudent() {
-		Student student = new Student();
-		student.setNum(1);
-		student.setName("winter");
-		student.setAvg(56.32);
+	public List<StudentDTO> getStudents() {
+		List<StudentDTO> students = null;
+		try {
+			students = studentDAO.getStudents();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return students;
+	}
+
+	public StudentDTO getDetail(StudentDTO studentDTO) {
+		StudentDTO student = null;
+		try {
+			student = studentDAO.getDetail(studentDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			student = null;
+		}
 		return student;
 	}
 

@@ -9,6 +9,7 @@ public class WeatherService {
 		weatherDAO = new WeatherDAO();
 	}
 
+	// list
 	public List<WeatherDTO> getWeathers() {
 		List<WeatherDTO> ar = null;
 		try {
@@ -19,6 +20,18 @@ public class WeatherService {
 		}
 		return ar;
 
+	}
+
+	// detail
+	public WeatherDTO getDeatail(WeatherDTO weatherDTO) {
+		try {
+			weatherDTO = weatherDAO.getDetail(weatherDTO);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			weatherDTO = null;
+		}
+		return weatherDTO;
 	}
 
 }
