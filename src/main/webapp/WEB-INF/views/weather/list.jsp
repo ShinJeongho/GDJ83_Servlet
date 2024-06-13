@@ -20,7 +20,7 @@
 		</tr>	
 	</thead>
 	<tbody>
-		<c:forEach items="${requestScope.list}" var="w">
+		<c:forEach items="${list}" var="w">
 			<tr>
 			<td>${pageScope.w.num}</td>
 			<td><a href="./detail?num=${pageScope.w.num}">${pageScope.w.city}</a></td>

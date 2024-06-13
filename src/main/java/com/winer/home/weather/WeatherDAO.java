@@ -76,7 +76,7 @@ public class WeatherDAO {
 		weatherDTO.setNum(weatherList.size() + 1);// DTO객체에 넘버부여
 
 		String data = weatherDTO.getCity() + "-" + weatherDTO.getGion() + "-" + weatherDTO.getStatus() + "-"
-				+ weatherDTO.getHuminity() + "/n";
+				+ weatherDTO.getHuminity();
 
 		fw.write(data);
 		fw.close();
