@@ -20,6 +20,8 @@ public class WeatherController {
 
 		Action action = new Action(); // jsp 경로명담아서
 		action.setFlag(true);
+		// 메서드형식 반환
+		String method = request.getMethod().toUpperCase();
 
 		if (uri.equals("list")) {
 
@@ -27,7 +29,24 @@ public class WeatherController {
 			request.setAttribute("list", ar);
 			action.setPath("/WEB-INF/views/weather/list.jsp"); // jsp 경로명담기
 		} else if (uri.equals("add")) {
-			action.setPath("/WEB-INF/views/weather/add.jsp");
+
+			if (method.equals("POST")) {
+				String city = request.getParameter("city");
+				double gion = Double.parseDouble(request.getParameter("gion"));
+				String status = request.getParameter("status");
+				int huminity = Integer.parseInt(request.getParameter("huminity"));
+				WeatherDTO weatherDTO = new WeatherDTO();
+				weatherDTO.setCity(city);
+				weatherDTO.setGion(gion);
+				weatherDTO.setStatus(status);
+				weatherDTO.setHuminity(huminity);
+
+				ws.add(weatherDTO);
+
+			} else {
+				action.setPath("/WEB-INF/views/weather/add.jsp");
+			}
+
 		} else if (uri.equals("delete")) {
 
 		} else if (uri.equals("detail")) {

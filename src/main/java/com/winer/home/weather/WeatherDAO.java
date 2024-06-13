@@ -3,6 +3,7 @@ package com.winer.home.weather;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +63,24 @@ public class WeatherDAO {
 			}
 		}
 		return result;
+	}
+
+	// add
+	public void add(WeatherDTO weatherDTO) throws Exception {
+		// 도시명-기온-상태-습도
+
+		File file = new File("C:\\study\\weather.txt"); // 경로파일 지정
+		FileWriter fw = new FileWriter(file, true); // 쓸때 기존파일에 덮어쓰기
+
+		List<WeatherDTO> weatherList = this.getWeathers(); // 파일에서 기존날씨목록 가져와서 DTO형태변환
+		weatherDTO.setNum(weatherList.size() + 1);// DTO객체에 넘버부여
+
+		String data = weatherDTO.getCity() + "-" + weatherDTO.getGion() + "-" + weatherDTO.getStatus() + "-"
+				+ weatherDTO.getHuminity() + "/n";
+
+		fw.write(data);
+		fw.close();
+
 	}
 
 }
