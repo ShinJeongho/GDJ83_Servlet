@@ -41,14 +41,14 @@ public class StudentDAO {
 	}
 
 	public StudentDTO getDetail(StudentDTO studentDTO) throws Exception {
-		List<StudentDTO> studentList = this.getStudents();
+		List<StudentDTO> studentList = this.getStudents();// 현재 객체의 getstudnet호출해서 모든학생정보가져옴
 
-		for (StudentDTO student : studentList) {
+		for (StudentDTO student : studentList) { // studentList에 있는 모든 StudentDTO순회
 			if (student.getNum() == studentDTO.getNum()) {
-				return student;
+				return student; // 현재순회중인 student의 num과 입력파라미터로받은 studentDTO의 num이 같으면
 			}
 		}
-		return null;
+		return null; // 요청한 학생번호에 해당하는 학생이 없음을 알려줌
 	}
 
 }
