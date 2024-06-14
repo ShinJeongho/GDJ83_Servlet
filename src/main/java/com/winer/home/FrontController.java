@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.winer.home.ive.IveController;
 import com.winer.home.student.StudentController;
 import com.winer.home.weather.WeatherController;
 
@@ -84,6 +85,14 @@ public class FrontController extends HttpServlet {
 				WeatherController wc = new WeatherController();
 				try {
 					action = wc.start(request);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else if (p[1].equals("ive")) {
+				IveController ic = new IveController();
+				try {
+					action = ic.start(request);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

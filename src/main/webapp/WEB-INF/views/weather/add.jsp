@@ -30,6 +30,12 @@
 			<input type="text" name="status">                       
 		</div>
 		
+		<div>
+			<label>날짜</label>
+			<input type="date" name="da">                       
+		</div>
+		
+		
 		<input type="submit" value="등록">
 		<button type="submit">등록</button>
 	

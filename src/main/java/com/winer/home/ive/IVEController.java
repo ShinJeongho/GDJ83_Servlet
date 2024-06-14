@@ -1,12 +1,11 @@
-package com.winer.home.food;
+package com.winer.home.ive;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.winer.home.Action;
 
-public class FoodController {
-
-	public Action start(HttpServletRequest request) {
+public class IveController {
+	public Action start(HttpServletRequest request) throws Exception {
 		String uri = request.getRequestURI();
 		uri = uri.substring(uri.lastIndexOf("/") + 1);
 
@@ -14,9 +13,9 @@ public class FoodController {
 		action.setFlag(true);
 
 		if (uri.equals("list")) {
-			action.setPath("/WEB-INF/views/food/list.jsp");
+			action.setPath("/WEB-INF/views/ive/list.jsp");
 		}
-		return action;
 
+		return action;
 	}
 }

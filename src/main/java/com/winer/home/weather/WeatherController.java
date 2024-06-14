@@ -53,6 +53,15 @@ public class WeatherController {
 			}
 
 		} else if (uri.equals("delete")) {
+			if (method.equals("POST")) {
+				String num = request.getParameter("num");
+				WeatherDTO weatherDTO = new WeatherDTO();
+				weatherDTO.setNum(Long.parseLong(num));
+				ws.delete(weatherDTO);
+				action.setPath("./list");
+				action.setFlag(false);
+
+			}
 
 		} else if (uri.equals("detail")) {
 			// 누구를 꺼내올건가 파라미터꺼내기

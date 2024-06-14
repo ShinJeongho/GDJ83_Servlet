@@ -68,19 +68,54 @@ public class WeatherDAO {
 	// add
 	public void add(WeatherDTO weatherDTO) throws Exception {
 		// 도시명-기온-상태-습도
+		List<WeatherDTO> ar = this.getWeathers();
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append(ar.size() + 1);
+		stringBuffer.append("-");
+		stringBuffer.append(weatherDTO.getCity());
+		stringBuffer.append("-");
+		stringBuffer.append(weatherDTO.getGion());
+		stringBuffer.append("-");
+		stringBuffer.append(weatherDTO.getStatus());
+		stringBuffer.append("-");
+		stringBuffer.append(weatherDTO.getHuminity());
 
-		File file = new File("C:\\study\\weather.txt"); // 경로파일 지정
-		FileWriter fw = new FileWriter(file, true);
+		File file = new File("C:\\study\\weather.txt");
 
-		List<WeatherDTO> weatherList = this.getWeathers(); // 파일에서 기존날씨목록 가져와서 DTO형태변환
-		weatherDTO.setNum(weatherList.size() + 1);// DTO객체에 넘버부여
+		FileWriter fileWriter = new FileWriter(file, true);
 
-		String data = weatherDTO.getNum() + "," + weatherDTO.getCity() + "-" + weatherDTO.getGion() + "-"
-				+ weatherDTO.getStatus() + "-" + weatherDTO.getHuminity();
+		fileWriter.write(stringBuffer.toString() + "\r\n");
+		fileWriter.flush();
 
-		fw.write(data);
-		fw.close();
+		fileWriter.close();
 
+	}
+
+	public void delete(WeatherDTO weatherDTO) throws Exception {
+		// 리스트 불러와서 지우려고하는 num과 일치하는 것을 리스트에서 삭제
+		// 남아있는 리스트를 파일에 다시 저장 지우고나서 리스트로 다시돌아가게
+		List<WeatherDTO> ar = this.getWeathers();
+		File file = new File("C:\\study\\weather.txt");
+		FileWriter fileWriter = new FileWriter(file);
+
+		for (WeatherDTO weather : ar) {
+			if (weather.getNum() != weatherDTO.getNum()) {
+				StringBuffer stringBuffer = new StringBuffer();
+				stringBuffer.append(weather.getNum());
+				stringBuffer.append("-");
+				stringBuffer.append(weather.getCity());
+				stringBuffer.append("-");
+				stringBuffer.append(weather.getGion());
+				stringBuffer.append("-");
+				stringBuffer.append(weather.getStatus());
+				stringBuffer.append("-");
+				stringBuffer.append(weather.getHuminity());
+				fileWriter.write(stringBuffer.toString() + "\r\n");
+
+			}
+		}
+		fileWriter.flush();
+		fileWriter.close();
 	}
 
 }
