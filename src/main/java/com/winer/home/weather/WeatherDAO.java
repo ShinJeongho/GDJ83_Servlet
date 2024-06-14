@@ -70,7 +70,7 @@ public class WeatherDAO {
 		// 도시명-기온-상태-습도
 
 		File file = new File("C:\\study\\weather.txt"); // 경로파일 지정
-		FileWriter fw = new FileWriter(file, true); // 쓸때 기존파일에 덮어쓰기
+		FileWriter fw = new FileWriter(file, true);
 
 		List<WeatherDTO> weatherList = this.getWeathers(); // 파일에서 기존날씨목록 가져와서 DTO형태변환
 		weatherDTO.setNum(weatherList.size() + 1);// DTO객체에 넘버부여

@@ -43,6 +43,11 @@ public class WeatherController {
 
 				ws.add(weatherDTO);
 
+//				List<WeatherDTO> ar = ws.getWeathers(); // add하면 list표가사라진거해결 코드
+//				request.setAttribute("list", ar); // 위아래 코드쓰면 테이블이 생김
+				// action.setPath("/weather/list"); //절대경로
+				action.setPath("./list"); // 상대경로 ./생략해도댐
+				action.setFlag(false); // 리다이렉트로 내보낼거임
 			} else {
 				action.setPath("/WEB-INF/views/weather/add.jsp");
 			}
