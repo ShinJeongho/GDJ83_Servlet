@@ -22,13 +22,22 @@
 		</form>
 		
 		<button type="button" id="btn">DELETE</button>
+		<button type="button" id="up">UPDATE</button>
 		
 		<script type="text/javascript">
 		const frm = document.getElementById("frm");
 		const btn = document.getElementById("btn");
+		const up = document.getElementById("up");
+		
+		up.addEventListener("click", function(){
+			frm.setAttribute("method","get")
+			frm.method="get"
+			frm.action="update";
+			frm.submit();
+		});	
 		btn.addEventListener("click", function(){
 			frm.submit();
-		})
+		});
 	
 		
 		

@@ -79,6 +79,38 @@ public class WeatherController {
 				action.setPath("/WEB-INF/views/commons/message.jsp");
 			}
 
+		} else if (uri.equals("update")) {
+
+			if (method.toUpperCase().equals("POST")) {
+				String num = request.getParameter("num");
+				String city = request.getParameter("city");
+				double gion = Double.parseDouble(request.getParameter("gion"));
+				String status = request.getParameter("status");
+				int huminity = Integer.parseInt(request.getParameter("huminity"));
+
+				WeatherDTO weatherDTO = new WeatherDTO();
+				weatherDTO.setNum(Long.parseLong(num));
+				weatherDTO.setCity(city);
+				weatherDTO.setGion(gion);
+				weatherDTO.setStatus(status);
+				weatherDTO.setHuminity(huminity);
+
+				ws.update(weatherDTO);
+
+				action.setPath("./list");
+				action.setFlag(false);
+
+			} else {
+
+				String num = request.getParameter("num");
+				WeatherDTO weatherDTO = new WeatherDTO();
+				weatherDTO.setNum(Long.parseLong(request.getParameter("num")));
+				weatherDTO = ws.getDeatail(weatherDTO);
+				request.setAttribute("dto", weatherDTO);
+				action.setPath("/WEB-INF/views/weather/update.jsp");
+
+			}
+
 		} else {
 
 		}

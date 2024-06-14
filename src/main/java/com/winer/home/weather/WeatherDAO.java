@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class WeatherDAO {
@@ -70,7 +71,8 @@ public class WeatherDAO {
 		// 도시명-기온-상태-습도
 		List<WeatherDTO> ar = this.getWeathers();
 		StringBuffer stringBuffer = new StringBuffer();
-		stringBuffer.append(ar.size() + 1);
+		Calendar ca = Calendar.getInstance();
+		stringBuffer.append(ca.getTimeInMillis()); // 번호 안겹치게 하는 코드
 		stringBuffer.append("-");
 		stringBuffer.append(weatherDTO.getCity());
 		stringBuffer.append("-");
@@ -113,6 +115,34 @@ public class WeatherDAO {
 				fileWriter.write(stringBuffer.toString() + "\r\n");
 
 			}
+		}
+		fileWriter.flush();
+		fileWriter.close();
+	}
+
+	public void update(WeatherDTO weatherDTO) throws Exception {
+		List<WeatherDTO> ar = this.getWeathers();
+		File file = new File("C:\\study\\weather.txt");
+		FileWriter fileWriter = new FileWriter(file);
+
+		for (WeatherDTO weather : ar) {
+			if (weather.getNum() == weatherDTO.getNum()) {
+				weather.setCity(weatherDTO.getCity());
+				weather.setGion(weatherDTO.getGion());
+				weather.setStatus(weatherDTO.getStatus());
+				weather.setHuminity(weatherDTO.getHuminity());
+			}
+			StringBuffer stringBuffer = new StringBuffer();
+			stringBuffer.append(weather.getNum());
+			stringBuffer.append("-");
+			stringBuffer.append(weather.getCity());
+			stringBuffer.append("-");
+			stringBuffer.append(weather.getGion());
+			stringBuffer.append("-");
+			stringBuffer.append(weather.getStatus());
+			stringBuffer.append("-");
+			stringBuffer.append(weather.getHuminity());
+			fileWriter.write(stringBuffer.toString() + "\r\n");
 		}
 		fileWriter.flush();
 		fileWriter.close();

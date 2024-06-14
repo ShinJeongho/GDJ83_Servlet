@@ -56,4 +56,13 @@ public class WeatherService {
 		}
 	}
 
+	public void update(WeatherDTO weatherDTO) {
+		try {
+			weatherDAO.update(weatherDTO);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+	}
+
 }
